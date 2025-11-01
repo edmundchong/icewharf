@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
 
+    .gallery-container {
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .gallery-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem 0.8rem;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+
+    .nav-button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .caption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery-container">
+    <button class="nav-button prev" onclick="changeSlide(-1)">&#10094;</button>
+    <img id="galleryImage" src="./photos/1.jpeg" alt="Gallery image" />
+    <button class="nav-button next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+  <div class="caption" id="caption">1 / 18</div>
+
+  <script>
+    const total = 18;
+    let index = 1;
+
+    function getImagePath(n) {
+      if (n >= 11 && n <= 13) return `./photos/${n}.heic`;
+      return `./photos/${n}.jpeg`;
+    }
+
+    function changeSlide(step) {
+      index += step;
+      if (index > total) index = 1;
+      if (index < 1) index = total;
+      document.getElementById("galleryImage").src = getImagePath(index);
+      document.getElementById("caption").textContent = `${index} / ${total}`;
+    }
+  </script>
+</body>
+</html>
