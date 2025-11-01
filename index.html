@@ -6,15 +6,29 @@
   <title>Photo Gallery</title>
   <style>
     body {
-      font-family: system-ui, sans-serif;
-      background: #111;
-      color: #fff;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #fff;
+      color: #222;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #111;
+    }
+
+    .text-body {
+      max-width: 700px;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #444;
     }
 
     .gallery-container {
@@ -24,7 +38,8 @@
       aspect-ratio: 3/2;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background: #f9f9f9;
     }
 
     .gallery-container img {
@@ -38,7 +53,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.4);
       border: none;
       color: white;
       font-size: 1.5rem;
@@ -49,7 +64,7 @@
     }
 
     .nav-button:hover {
-      background: rgba(255,255,255,0.3);
+      background: rgba(0, 0, 0, 0.6);
     }
 
     .prev { left: 10px; }
@@ -58,17 +73,36 @@
     .caption {
       margin-top: 0.5rem;
       font-size: 0.9rem;
-      color: #ccc;
+      color: #666;
     }
   </style>
 </head>
 <body>
+
+  <h1>My Photo Gallery</h1>
+
+  <div class="text-body">
+    <p>
+      Welcome to my gallery! These photos capture various moments and ideas.  
+      Use the arrows to browse through the collection.  
+      Photos 11–13 are in HEIC format — some browsers may not display them directly.
+    </p>
+  </div>
+
   <div class="gallery-container">
     <button class="nav-button prev" onclick="changeSlide(-1)">&#10094;</button>
     <img id="galleryImage" src="./photos/1.jpeg" alt="Gallery image" />
     <button class="nav-button next" onclick="changeSlide(1)">&#10095;</button>
   </div>
+
   <div class="caption" id="caption">1 / 18</div>
+
+  <div class="text-body">
+    <p>
+      This gallery is built with pure HTML, CSS, and JavaScript —  
+      no frameworks or dependencies. It runs seamlessly on GitHub Pages.
+    </p>
+  </div>
 
   <script>
     const total = 18;
@@ -87,5 +121,6 @@
       document.getElementById("caption").textContent = `${index} / ${total}`;
     }
   </script>
+
 </body>
 </html>
